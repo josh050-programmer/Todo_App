@@ -1,0 +1,28 @@
+<head>
+    <link href="{{url_for('static',filename='css/bootstrap/bootstrap.min.css')}}" rel="stylesheet" />
+</head>
+<body style="background-color:lightskyblue">
+    <center>
+        <div class="label" style="margin-left:100px">
+            <h1>My TODOS</h1>
+    
+                <form action="/task" method="post">
+                    <p><input type="text" name="content" required></p>
+                    <input type="submit" value="Add Task" class="btn-success">
+                </form>
+                    <ol>
+                        {% for task in tasks %}
+                            <li class="alert alert-info">
+                              {{task.content}}
+                              {%if task.status %}
+                                <a href="/done/{{task.id}}"><button disabled>Done</button></a>
+                                {%else%}
+                                <a href="/done/{{task.id}}"><button >Done</button></a>
+                                {%endif%}
+                                <a href="/delete/{{task.id}}"><button>Delete</button></a>
+                            </li>
+                            {%endfor%}
+                    </ol>
+        </div>
+    </center>
+</body>
